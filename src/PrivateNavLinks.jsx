@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "./components/contexts/AuthContext";
 
 function PrivateNavLinks() {
-  const { isAuthenticated } = useContext(AuthContext);
+  const { isAuthenticated, logout } = useContext(AuthContext);
 
   return (
     <>
@@ -24,6 +24,13 @@ function PrivateNavLinks() {
       {!isAuthenticated && (
         <li>
           <Link to="/login">Login</Link>
+        </li>
+      )}
+      {isAuthenticated && (
+        <li>
+          <button className="logout" onClick={logout}>
+            Logout
+          </button>
         </li>
       )}
     </>

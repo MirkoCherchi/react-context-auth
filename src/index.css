@@ -355,3 +355,20 @@ input[type="password"] {
   background-color: #f3dfa2;
   color: #231f20;
 }
+
+/* Logout */
+
+.logout {
+  all: unset;
+  background-color: #7ebdc2;
+  color: #231f20;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-weight: 800;
+}
+
+.logout:hover {
+  background-color: #f3dfa2;
+}
