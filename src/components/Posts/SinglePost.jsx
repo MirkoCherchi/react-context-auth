@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const apiUrl = import.meta.env.VITE_BASE_API_URL;
+const fallbackImgUrl = "https://placehold.co/600x400";
 
 const Post = () => {
   const { slug } = useParams();
@@ -19,9 +20,11 @@ const Post = () => {
 
   return (
     <div className="post-container">
-      <h1>{post.title}</h1>
-      {post.img && (
+      <h2>{post.title}</h2>
+      {post.img ? (
         <img src={post.img} alt={post.title} className="post-image" />
+      ) : (
+        <img src={fallbackImgUrl} alt={post.title} className="post-image" />
       )}
       <div className="post-content">{post.content}</div>
       <div className="post-meta">
@@ -33,10 +36,10 @@ const Post = () => {
           <strong>Category:</strong> {post.category.name}
         </p>
         <div className="post-tags">
-          <strong>Tags:</strong>
+          <strong>Tags: </strong>
           {post.tags.map((tag) => (
-            <span key={tag.id} className="tag">
-              {tag.name}
+            <span key={tag.id} className="tagSingle">
+              {"#"} {tag.name}
             </span>
           ))}
         </div>

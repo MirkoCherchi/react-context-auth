@@ -22,15 +22,16 @@ function Posts() {
   return (
     <div className="posts-container">
       {posts.map((post) => (
-        <CardPost
-          key={post.id}
-          title={post.title}
-          img={post.img}
-          content={post.content}
-          category={post.category.name}
-          tags={post.tags}
-          slug={post.slug}
-        />
+        <div className="postCard" key={post.id}>
+          <CardPost
+            title={post.title}
+            img={post.img}
+            content={post.content}
+            category={post.category.name}
+            tags={post.tags}
+            slug={post.slug}
+          />
+        </div>
       ))}
     </div>
   );

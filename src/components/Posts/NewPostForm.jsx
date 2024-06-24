@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_BASE_API_URL;
 
-function NewPostForm({ onNewPostCreated }) {
+const NewPostForm = ({ onNewPostCreated }) => {
   const [formData, setFormData] = useState({
     title: "",
     content: "",
@@ -124,7 +124,7 @@ function NewPostForm({ onNewPostCreated }) {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form className="new-post-form-container" onSubmit={handleSubmit}>
       <div>
         <label>Title:</label>
         <input
@@ -161,20 +161,22 @@ function NewPostForm({ onNewPostCreated }) {
           ))}
         </select>
       </div>
-      <div>
+      <div className="tags-container">
         <label>Tags:</label>
-        {availableTags.map((tag) => (
-          <div key={tag.id}>
-            <input
-              type="checkbox"
-              id={`tag-${tag.id}`}
-              value={tag.id}
-              checked={formData.tags.includes(tag.id)}
-              onChange={() => handleTagChange(tag.id)}
-            />
-            <label htmlFor={`tag-${tag.id}`}>{tag.name}</label>
-          </div>
-        ))}
+        <div className="tags">
+          {availableTags.map((tag) => (
+            <div key={tag.id} className="tag-item">
+              <input
+                type="checkbox"
+                id={`tag-${tag.id}`}
+                value={tag.id}
+                checked={formData.tags.includes(tag.id)}
+                onChange={() => handleTagChange(tag.id)}
+              />
+              <label htmlFor={`tag-${tag.id}`}>{tag.name}</label>
+            </div>
+          ))}
+        </div>
       </div>
       <div>
         <label>Image:</label>
@@ -196,10 +198,10 @@ function NewPostForm({ onNewPostCreated }) {
           Pubblicato
         </label>
       </div>
-      {error && <p>{error}</p>}
+      {error && <p className="error">{error}</p>}
       <button type="submit">Crea Post</button>
     </form>
   );
-}
+};
 
 export default NewPostForm;

@@ -9,7 +9,6 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // Se l'utente è autenticato, reindirizza alla pagina di admin
     if (isAuthenticated) {
       navigate("/admin");
     }
@@ -21,25 +20,35 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div>
-        <label>Email:</label>
-        <input
-          type="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
-      </div>
-      <div>
-        <label>Password:</label>
-        <input
-          type="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      </div>
-      <button type="submit">Login</button>
-    </form>
+    <div className="loginContainer">
+      <form className="loginForm" onSubmit={handleSubmit}>
+        <div className="formGroup">
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div className="formGroup">
+          <label className="labelLogin" htmlFor="password">
+            Password:
+          </label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <button className="loginButton" type="submit">
+          Login
+        </button>
+      </form>
+    </div>
   );
 };
 
