@@ -1,6 +1,7 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
-function CardPost({ title, img, content, category, tags }) {
+function CardPost({ title, img, content, category, tags, slug }) {
   return (
     <div className="post-card">
       <h2>{title}</h2>
@@ -13,12 +14,14 @@ function CardPost({ title, img, content, category, tags }) {
         <strong>Tags:</strong>
         {tags.map((tag) => (
           <span key={tag.id} className="tag">
-            {" "}
             {"#"}
-            {tag.name}{" "}
+            {tag.name}
           </span>
         ))}
       </div>
+      <Link className="read-more" to={`/post/${slug}`}>
+        Leggi di più
+      </Link>
     </div>
   );
 }

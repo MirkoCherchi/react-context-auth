@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_BASE_API_URL;
 
@@ -15,6 +16,8 @@ function NewPostForm({ onNewPostCreated }) {
   const [categories, setCategories] = useState([]);
   const [availableTags, setAvailableTags] = useState([]);
   const [error, setError] = useState(null);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCategoriesAndTags = async () => {
@@ -88,6 +91,7 @@ function NewPostForm({ onNewPostCreated }) {
       if (typeof onNewPostCreated === "function") {
         onNewPostCreated();
       }
+      navigate(`/post/${response.data.slug}`);
     } catch (error) {
       console.error("Errore durante la creazione del nuovo post:", error);
       setError(

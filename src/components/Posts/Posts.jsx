@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import CardPost from "./CardPost";
 import NewPostForm from "./NewPostForm";
+import { Link } from "react-router-dom";
 
 const apiUrl = import.meta.env.VITE_BASE_API_URL;
 
@@ -20,18 +21,18 @@ function Posts() {
     fetchPosts();
   }, []);
 
-  const handleNewPostCreated = async () => {
-    try {
-      const response = await axios.get(`${apiUrl}/posts`);
-      setPosts(response.data.data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleNewPostCreated = async () => {
+  //   try {
+  //     const response = await axios.get(`${apiUrl}/posts`);
+  //     setPosts(response.data.data);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
 
   return (
     <div className="posts-container">
-      <NewPostForm onNewPostCreated={handleNewPostCreated} />
+      {/* <NewPostForm onNewPostCreated={handleNewPostCreated} /> */}
       {posts.map((post) => (
         <CardPost
           key={post.id}
@@ -40,6 +41,7 @@ function Posts() {
           content={post.content}
           category={post.category.name}
           tags={post.tags}
+          slug={post.slug}
         />
       ))}
     </div>
