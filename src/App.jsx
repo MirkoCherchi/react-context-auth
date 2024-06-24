@@ -1,35 +1,61 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes, Link } from "react-router-dom";
-import Home from "./components/Pages/Home";
+import { AuthProvider } from "./components/contexts/AuthContext";
+import PrivateRoute from "./components/middlewares/PrivateRoute";
 import Posts from "./components/Posts/Posts";
-import Post from "./components/Posts/SinglePost";
+import Login from "./components/Pages/Login";
 import CreatePost from "./components/Posts/CreatePost";
+import SinglePost from "./components/Posts/SinglePost";
+import Home from "./components/Pages/Home";
+import Admin from "./components/Pages/Admin";
 
 function App() {
   return (
-    <Router>
-      <div>
+    <AuthProvider>
+      <Router>
         <nav>
-          <ul>
+          <ul className="navLinks">
             <li>
               <Link to="/">Home</Link>
+            </li>
+            <li>
+              <Link to="/login">Login</Link>
+            </li>
+            <li>
+              <Link to="/admin">Admin</Link>
             </li>
             <li>
               <Link to="/posts">Posts</Link>
             </li>
             <li>
-              <Link to="/create-posts">Crea Post</Link>
+              <Link to="/create-post">Create Post</Link>
             </li>
           </ul>
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route
+            path="/admin"
+            element={
+              <PrivateRoute>
+                <Admin />
+              </PrivateRoute>
+            }
+          />
           <Route path="/posts" element={<Posts />} />
-          <Route path="/create-posts" element={<CreatePost />} />
-          <Route path="/post/:id" element={<Post />} />
+          <Route
+            path="/create-post"
+            element={
+              <PrivateRoute>
+                <CreatePost />
+              </PrivateRoute>
+            }
+          />
+          <Route path="/post/:slug" element={<SinglePost />} />
         </Routes>
-      </div>
-    </Router>
+      </Router>
+    </AuthProvider>
   );
 }
 
