@@ -7,6 +7,7 @@ import Login from "./components/Pages/Login";
 import CreatePost from "./components/Posts/CreatePost";
 import SinglePost from "./components/Posts/SinglePost";
 import Home from "./components/Pages/Home";
+import PrivateNavLinks from "./PrivateNavLinks";
 import Admin from "./components/Pages/Admin";
 
 function App() {
@@ -18,18 +19,7 @@ function App() {
             <li>
               <Link to="/">Home</Link>
             </li>
-            <li>
-              <Link to="/login">Login</Link>
-            </li>
-            <li>
-              <Link to="/admin">Admin</Link>
-            </li>
-            <li>
-              <Link to="/posts">Posts</Link>
-            </li>
-            <li>
-              <Link to="/create-post">Create Post</Link>
-            </li>
+            <PrivateNavLinks />
           </ul>
         </nav>
         <Routes>
