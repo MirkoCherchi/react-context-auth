@@ -5,15 +5,15 @@ import axios from "axios";
 const apiUrl = import.meta.env.VITE_BASE_API_URL;
 
 const Post = () => {
-  const { id } = useParams();
+  const { slug } = useParams();
   const [post, setPost] = useState(null);
 
   useEffect(() => {
     axios
-      .get(`${apiUrl}/posts/${id}`)
+      .get(`${apiUrl}/posts/${slug}`)
       .then((response) => setPost(response.data))
       .catch((error) => console.error("Errore:", error));
-  }, [id]);
+  }, [slug]);
 
   if (!post) return <div className="loading">Loading...</div>;
 
